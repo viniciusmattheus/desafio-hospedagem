@@ -9,14 +9,40 @@ namespace Hospedagem.Models
     {
         public Reserva() {}
 
-        public Reserva(string tipoSuite, int capacidade, decimal valorDiaria)
+        public Reserva(int diasReservados)
         {
-            this.TipoSuite = tipoSuite;
-            this.Capacidade = capacidade;           
+            this.DiasReservados = diasReservados;
         }
 
-        public string TipoSuite { get; set; }
-        public int Capacidade { get; set; }
-        public decimal ValorDiaria { get; set; }
+        public List<Pessoa> Hospedes {get; set;}
+        public Suite Suite { get; set; }
+        
+        public int DiasReservados { get; set; }
+
+        public void CadastrarHospedes(List<Pessoa> hospedes) {
+        }
+
+        public void CadastrarSuite(Suite suite) {
+            this.Suite = suite;
+        }
+
+        public int ObterQuantidadeHospedes() {
+            int quantidadeHospedes;
+
+            if (Hospedes.Count != 0) 
+            {
+                quantidadeHospedes = Hospedes.Count;
+                return quantidadeHospedes;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public decimal CalcularValorDiaria()
+        {
+            return 0;
+        }
     }
 }
