@@ -11,8 +11,9 @@ namespace Hospedagem.Models
 
         public Suite(string tipoSuite, int capacidade, decimal valorDiaria)
         {
-            this.TipoSuite = tipoSuite;
-            this.Capacidade = capacidade;           
+            TipoSuite = tipoSuite;
+            Capacidade = capacidade;
+            ValorDiaria = valorDiaria;          
         }
 
         public string TipoSuite { get; set; }

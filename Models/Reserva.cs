@@ -11,38 +11,44 @@ namespace Hospedagem.Models
 
         public Reserva(int diasReservados)
         {
-            this.DiasReservados = diasReservados;
+            DiasReservados = diasReservados;
         }
 
         public List<Pessoa> Hospedes {get; set;}
-        public Suite Suite { get; set; }
-        
+        public Suite SuiteReservada { get; set; }
         public int DiasReservados { get; set; }
 
         public void CadastrarHospedes(List<Pessoa> hospedes) {
-        }
 
-        public void CadastrarSuite(Suite suite) {
-            this.Suite = suite;
-        }
-
-        public int ObterQuantidadeHospedes() {
-            int quantidadeHospedes;
-
-            if (Hospedes.Count != 0) 
+            if (hospedes.Count <= SuiteReservada.Capacidade)
             {
-                quantidadeHospedes = Hospedes.Count;
-                return quantidadeHospedes;
+                Hospedes = hospedes;
             }
             else
             {
-                return 0;
+                throw new ArgumentException("A suite não suporta essa capacidade de Hospedes!");
             }
+        }
+
+        public void CadastrarSuite(Suite suiteReservada) {
+            this.SuiteReservada = suiteReservada;
+        }
+
+        public int ObterQuantidadeHospedes() {
+
+            return Hospedes.Count;
         }
 
         public decimal CalcularValorDiaria()
         {
-            return 0;
+            decimal valor = DiasReservados * SuiteReservada.ValorDiaria;
+
+            if (DiasReservados >= 10)
+            {
+                valor *= 0.90M;
+            }
+
+            return valor;
         }
     }
 }
