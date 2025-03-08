@@ -26,7 +26,7 @@ namespace Hospedagem.Models
             }
             else
             {
-                throw new ArgumentException("A suite não suporta essa capacidade de Hospedes!");
+                throw new ArgumentException("A suite não suporta essa quantidade de Hospedes!");
             }
         }
 
